@@ -6,8 +6,22 @@ if command -v brew >/dev/null 2>&1; then
 else
 	. $HOME/.asdf/asdf.sh
 fi
-# Set asdf plugin settings
-. ~/.asdf/plugins/dotnet-core/set-dotnet-home.zsh
 
 # append asdf completions to fpath
 fpath=(${ASDF_DIR}/completions $fpath)
+
+# Set asdf plugin settings
+. ~/.asdf/plugins/dotnet-core/set-dotnet-home.zsh
+
+
+# zsh parameter completion for the dotnet CLI
+# Should be possible to remove this once asdf-dotnet-core implements it
+
+_dotnet_zsh_complete()
+{
+  local completions=("$(dotnet complete "$words")")
+
+  reply=( "${(ps:\n:)completions}" )
+}
+
+compctl -K _dotnet_zsh_complete dotnet
