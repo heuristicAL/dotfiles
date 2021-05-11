@@ -38,7 +38,6 @@ if command -v asdf >/dev/null 2>&1; then
 	asdf plugin add ruby
 	asdf plugin add nodejs
 	asdf plugin add python
-	asdf plugin add dotnet-core
 	asdf plugin add neovim
 
 	file=$HOME/.tool-versions
@@ -47,13 +46,11 @@ if command -v asdf >/dev/null 2>&1; then
 		ruby_latest=$(asdf latest ruby)
 		nodejs_latest=$(asdf latest nodejs)
 		python_latest=$(asdf latest python)
-		dotnet_latest=$(asdf latest dotnet-core)
 		neovim_stable=stable
 
 		echo "ruby ${ruby_latest}
 nodejs ${nodejs_latest}
 python ${python_latest}
-dotnet-core ${dotnet_latest}
 neovim stable" > ~/.tool-versions
 	else
 		echo "$file exists, skipping creation step"
