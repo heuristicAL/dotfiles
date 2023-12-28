@@ -1,6 +1,6 @@
 # TODO: Handle powershell for windows
 {{ $macBrewPath := get (dict "amd64" "/usr/local/bin/" "arm64" "/opt/homebrew/bin/") .chezmoi.arch -}}
-{{ $shellPathDict := dict "linux" "/usr/bin/zsh" "darwin" (print $macBrewPath "zsh") "windows" "pwsh.exe" -}}
+{{ $shellPathDict := dict "linux" "/usr/bin/nu" "darwin" (print $macBrewPath "nu") "windows" "nu.exe" -}}
 {{- $shellPath := osClean (get $shellPathDict .chezmoi.os) -}}
 
 {{ $zellijPathDict := dict "linux" "/usr/bin/zellij" "darwin" (print $macBrewPath "zellij") "windows" "zellij.exe" -}}
