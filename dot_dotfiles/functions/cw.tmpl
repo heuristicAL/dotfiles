@@ -1,0 +1,5 @@
+{{ if .has_work_profile -}}
+#!/bin/sh
+# shellcheck disable=SC2164
+cd "$PROJECTS_WORK/$1"
+{{- end }}

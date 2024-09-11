@@ -1,0 +1,4 @@
+{{ if (and .has_work_profile (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin"))) -}}
+[user]
+	email = {{ .work_email | quote }}
+{{ end -}}

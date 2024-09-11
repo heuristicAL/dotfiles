@@ -1,9 +1,9 @@
 [user]
 	email = {{ .personal_email | quote }}
 	name = {{ .full_name | quote }}
-{{ if .has_alternate_profile -}}
-[includeIf "gitdir:{{ .alternate_project_folder }}"]
-    path = .gitconfig.alternate
+{{ if .has_work_profile -}}
+[includeIf "gitdir:{{ .work_project_folder }}"]
+    path = .gitconfig.work
 {{- end }}
 [credential]
 	{{ if eq .chezmoi.os "darwin" -}}
