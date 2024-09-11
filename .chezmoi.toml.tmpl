@@ -17,4 +17,3 @@ when accessing work projects/machines. (mainly used for git)` -}}
     work_project_folder = {{ osClean (printf "%q" (print .chezmoi.homeDir "/" $workProjectFolder)) }}
     work_hosts_string = {{ $workHostString | quote }}
 {{     end -}}
-
