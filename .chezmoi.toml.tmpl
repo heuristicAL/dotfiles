@@ -1,17 +1,19 @@
-{{- $full_name := promptStringOnce . "full_name" "Full Name" -}}
-{{- $email := promptStringOnce . "email" "Main Email address (Whos home directory is this?)" -}}
-{{- $projectFolder := promptStringOnce . "projectFolder" "Default Projects Folder (relative to home) (`c` will cd you there)" -}}
-{{- $hasAlternateProfile := promptBoolOnce . "hasAlternateProfile" "Does this machine have an alternate profile? (Like a work or personal 'profile')" -}}
+{{- $fullName := promptStringOnce . "fullName" "Full Name" -}}
+{{- $personalEmail := promptStringOnce . "personalEmail" "Your personal email address" -}}
+{{- $personalProjectFolder := promptStringOnce . "personalProjectFolder" "Personal Projects Folder (relative to home) (`c` will cd you there)" -}}
+{{- $hasWorkProfile := promptBoolOnce . "hasWorkProfile" "Does this machine have a work profile? Is this a work machine?" -}}
 
 [data]
-    full_name = {{ $full_name | quote }}
-    email = {{ $email | quote }}
-    project_folder = {{ osClean (printf "%q" (print .chezmoi.homeDir "/" $projectFolder)) }}
-    has_alternate_profile = {{ $hasAlternateProfile }}
-{{ if $hasAlternateProfile}}
-{{- $alternateEmail := promptStringOnce . "alternateEmail" "Alternate Email address" -}}
-{{- $alternateProjectFolder := promptStringOnce . "alternateProjectFolder" "Alternate Projects Folder (relative to home) (`ca` will cd you there)" }}
-    alternate_email = {{ $alternateEmail | quote }}
-    alternate_project_folder = {{ osClean (printf "%q" (print .chezmoi.homeDir "/" $alternateProjectFolder)) }}
+    full_name = {{ $fullName | quote }}
+    personal_email = {{ $personalEmail | quote }}
+    personal_project_folder = {{ osClean (printf "%q" (print .chezmoi.homeDir "/" $personalProjectFolder)) }}
+    has_work_profile = {{ $hasWorkProfile }}
+{{ if $hasWorkProfile}}
+{{- $workEmail := promptStringOnce . "workEmail" "Work Email address" -}}
+{{- $workProjectFolder := promptStringOnce . "workProjectFolder" "Work Projects Folder (relative to home) (`cw` will cd you there)" }}
+{{- $workHostString := promptStringOnce . "workHostString" `Space-separated list of Domain patterns to use for work. Used to link the right ssh key
+when accessing work projects/machines. (mainly used for git)` -}}
+    work_email = {{ $workEmail | quote }}
+    work_project_folder = {{ osClean (printf "%q" (print .chezmoi.homeDir "/" $workProjectFolder)) }}
+    work_hosts_string = {{ $workHostString | quote }}
 {{     end -}}
-

@@ -28,7 +28,7 @@ plugin_autoupdate_last_check_duration = '10080' # set to 0 to disable updates, 1
 
 # config files with these prefixes will be trusted by default
 trusted_config_paths = [
-	{{ osClean .project_folder | quote }},
+	{{ osClean .personal_project_folder | quote }},
 ]
 
 verbose = false     # set to true to see full installation output, see `MISE_VERBOSE`

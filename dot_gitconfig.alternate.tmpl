@@ -1,4 +1,0 @@
-{{ if (and .has_alternate_profile (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin"))) -}}
-[user]
-	email = {{ .alternate_email | quote }}
-{{ end -}}

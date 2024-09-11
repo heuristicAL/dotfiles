@@ -14,7 +14,7 @@ You can also [read my post on the subject](http://carlosbecker.com/posts/dotfile
 
 ## Decisions
 
-### Default `EDITOR`, `VEDITOR`, `PROJECTS` and `PROJECTS_ALTERNATE`
+### Default `EDITOR`, `VEDITOR`, `PROJECTS` and `PROJECTS_WORK`
 
 `VEDITOR` stands for "visual editor", and is set to `code` by default. `EDITOR`
 is set to `vim`.
@@ -26,7 +26,7 @@ You can change that by adding your custom overrides in `~/.localrc`.
 `PROJECTS` is default to whatever is specified when you initialize the dotfiles. The shortcut to that folder in the shell
 is `c`.
 
-`$PROJECTS_ALTERNATE` is default to nothing, unless you specify an alternate projects dir when you initialize the dotfiles.
+`$PROJECTS_WORK` is default to nothing, unless you specify an work projects dir when you initialize the dotfiles.
 The shortcut to that folder in the shell is `c`.
 
 You can change these at initialization time or by running chezmoi with the `-init` flag (ex:`chezmoi apply --init`)

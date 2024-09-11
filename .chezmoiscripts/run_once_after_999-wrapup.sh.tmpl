@@ -1,0 +1,13 @@
+#!/bin/bash
+set -eufo pipefail
+
+echo -e "\0033[0;32m>>>>> Dotfiles initialized successfully. Please consider reading some of the suggestions below: <<<<<\033[0m"
+
+echo -e "Generate an ssh key for your personal profile at location: $HOME/.ssh/ssh_personal"
+
+{{ if .has_work_profile -}}
+echo -e "Generate an ssh key for your personal profile at location: $HOME/.ssh/ssh_work"
+{{- end }}
+
+
+echo -e "\0033[0;32m>>>>> !!!Please close this terminal tab and open a new one to pick up any new configs!!! <<<<<\033[0m"
