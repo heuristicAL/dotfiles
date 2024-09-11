@@ -1,4 +1,3 @@
-{{ if (eq .chezmoi.os "darwin") -}}
 #!/bin/bash
 set -eufo pipefail
 
@@ -12,4 +11,3 @@ PACKAGES=(git curl unzip)
 {{ template "brew-executable" . }} install $PACKAGES
 
 echo -e "\0033[0;32m>>>>> Finish Setting Up zsh Shell <<<<<\033[0m"
-{{ end -}}

@@ -1,4 +1,3 @@
-{{ if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 #!/bin/zsh
 # Only run if the version has changed
 # starship version: {{ (gitHubLatestRelease "starship/starship").TagName }}
@@ -8,8 +7,3 @@ set -eufo pipefail
 echo -e "\0033[0;32m>>>>> Begin Installing Starship 🚀 for Linux/Mac <<<<<\033[0m"
 
 curl -sS https://starship.rs/install.sh | sh
-
-{{   else if (eq .chezmoi.os "windows") -}}
-// I dunno, install on windows?
-winget install --id Starship.Starship
-{{ end -}}

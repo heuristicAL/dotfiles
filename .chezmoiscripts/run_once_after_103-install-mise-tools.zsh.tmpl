@@ -1,10 +1,7 @@
-{{ if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
 #!/bin/zsh
 
 {{- $configPath := osClean (print .chezmoi.homeDir "/.config/mise/config.toml" ) }}
 
 # Include file sum so that we re-run every time that file changes
 # {{ $configPath }} hash: {{ include $configPath | sha256sum }}
-mise install
-
-{{ end -}}
+$HOME/.local/bin/mise install

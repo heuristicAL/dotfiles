@@ -1,0 +1,9 @@
+#!/bin/zsh
+set -eufo pipefail
+
+echo -e "\0033[0;32m>>>>> Begin Installing Packages for Windows <<<<<\033[0m"
+
+$packages = @('fzf', 'sharkdp.bat', 'alacritty')
+foreach ($package in $packages) {
+winget install $package
+}

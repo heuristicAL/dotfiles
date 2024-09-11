@@ -1,0 +1,24 @@
+#!/bin/zsh
+set -eufo pipefail
+
+echo -e "\0033[0;32m>>>>> Begin Installing Packages for Linux/Mac <<<<<\033[0m"
+
+PACKAGES=(eza fzf ripgrep bat alacritty git-delta)
+ARCH_PACKAGES=(fd zellij k9s helix)
+DEBIAN_PACKAGES=(fd-find)
+DEBIAN_REPOSITORIES=(ppa:maveonair/helix-editor)
+
+# Installing packages for Linux
+{{ if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
+  echo "installing packages with apt"
+{{ template "run-as-root" dict "chezmoi" .chezmoi "command" "add-apt-repository $DEBIAN_REPOSITORIES" }}
+{{ template "run-as-root" dict "chezmoi" .chezmoi "command" "apt install -y $PACKAGES $DEBIAN_PACKAGES" }}
+
+{{ else if eq .chezmoi.osRelease.id "arch" -}}
+if [ "$(pacman -Qq zsh 2> /dev/null)" != zsh ]; then
+  echo "installing packages with pacman"
+{{ template "run-as-root" dict "chezmoi" .chezmoi "command" "pacman -S --noconfirm $PACKAGES $ARCH_PACKAGES" }}
+fi
+{{ end -}}
+
+echo -e "\0033[0;32m>>>>> Finish Installing Packages <<<<<\033[0m"

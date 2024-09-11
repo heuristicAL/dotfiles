@@ -1,13 +1,4 @@
-{{ if (eq .chezmoi.os "linux") -}}
-{{   if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
-echo "Deb/Ubuntu: updating packages";
-{{ template "run-as-root" dict "chezmoi" .chezmoi "command" "apt update" }}
-{{   else if eq .chezmoi.osRelease.id "arch" -}}
-echo "Arch: updating packages";
-{{ template "run-as-root" dict "chezmoi" .chezmoi "command" "pacman -Syy --noconfirm" }}
-{{ end -}}
-
-{{   else if (eq .chezmoi.os "darwin") -}}
+{{ if (eq .chezmoi.os "darwin") -}}
 {{ template "brew-executable" . }} update;
 
 {{   else if (eq .chezmoi.os "windows") -}}

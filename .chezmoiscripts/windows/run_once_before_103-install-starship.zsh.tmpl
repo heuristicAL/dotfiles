@@ -1,0 +1,9 @@
+#!/bin/zsh
+# Only run if the version has changed
+# starship version: {{ (gitHubLatestRelease "starship/starship").TagName }}
+
+set -eufo pipefail
+
+echo -e "\0033[0;32m>>>>> Begin Installing Starship 🚀 for Windows <<<<<\033[0m"
+
+winget install --id Starship.Starship

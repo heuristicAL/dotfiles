@@ -2,12 +2,14 @@
 {{- $email := promptStringOnce . "email" "Main Email address (Whos home directory is this?)" -}}
 {{- $projectFolder := promptStringOnce . "projectFolder" "Default Projects Folder (relative to home) (`c` will cd you there)" -}}
 {{- $hasAlternateProfile := promptBoolOnce . "hasAlternateProfile" "Does this machine have an alternate profile? (Like a work or personal 'profile')" -}}
+{{- $hasChShAccess := promptBoolOnce . "hasChShAccess" "Can this machine run chsh to change shell?" -}}
 
 [data]
     full_name = {{ $full_name | quote }}
     email = {{ $email | quote }}
     project_folder = {{ osClean (printf "%q" (print .chezmoi.homeDir "/" $projectFolder)) }}
     has_alternate_profile = {{ $hasAlternateProfile }}
+    has_chsh_access = {{ $hasChShAccess }}
 {{ if $hasAlternateProfile}}
 {{- $alternateEmail := promptStringOnce . "alternateEmail" "Alternate Email address" -}}
 {{- $alternateProjectFolder := promptStringOnce . "alternateProjectFolder" "Alternate Projects Folder (relative to home) (`ca` will cd you there)" }}

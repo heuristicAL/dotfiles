@@ -1,0 +1,14 @@
+#!/bin/bash
+set -eufo pipefail
+
+echo -e "\0033[0;32m>>>>> Begin Setting Up Zsh Shell For Linux/Mac <<<<<\033[0m"
+
+# Set zsh as default shell
+{{ if .has_chsh_access }}
+if [ $SHELL != $(which zsh) ]; then
+  echo "Changing default shell to zsh"
+  chsh -s $(which zsh)
+  {{ template "run-as-root" dict "chezmoi" .chezmoi "command" "chsh -s $(which zsh)" }}
+fi
+{{ end }}
+echo -e "\0033[0;32m>>>>> Finish Setting Up zsh Shell <<<<<\033[0m"

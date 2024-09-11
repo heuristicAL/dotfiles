@@ -1,0 +1,20 @@
+#!/bin/bash
+set -eufo pipefail
+
+echo -e "\0033[0;32m>>>>> Begin Setting Up Zsh Shell For Mac <<<<<\033[0m"
+echo "installing zsh with brew"
+{{ template "brew-executable" . }} install zsh
+
+# Set zsh as default shell
+if [ $SHELL != $(which zsh) ]; then
+  echo "Changing default shell to zsh"
+{{  if ne .chezmoi.username "root" -}}
+	echo $(which zsh) | sudo tee -a /etc/shells
+    sudo chsh -s $(which zsh)
+{{  else -}}
+	echo $(which zsh) | tee -a /etc/shells
+    chsh -s $(which zsh)
+{{  end -}}
+fi
+
+echo -e "\0033[0;32m>>>>> Finish Setting Up zsh Shell <<<<<\033[0m"

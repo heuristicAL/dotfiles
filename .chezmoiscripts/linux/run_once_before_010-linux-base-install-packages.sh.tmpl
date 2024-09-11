@@ -1,0 +1,26 @@
+#!/bin/bash
+set -eufo pipefail
+
+echo -e "\0033[0;32m>>>>> Begin Setting Up Base Packages For Linux <<<<<\033[0m"
+
+PACKAGES=(git curl tar unzip libssl-dev libbz2-dev libffi-dev libncurses5-dev zlib1g zlib1g-dev  zlib-devel libreadline-dev libsqlite3-dev)
+DEBIAN_PACKAGES=(build-essential)
+ARCH_PACKAGES=(gcc)
+
+{{ if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
+	echo "Deb/Ubuntu: updating packages";
+	{{ template "run-as-root" dict "chezmoi" .chezmoi "command" "apt update" }}
+	{{ template "run-as-root" dict "chezmoi" .chezmoi "command" "apt install -y $PACKAGES $DEBIAN_PACKAGES" }}
+	echo "installing zsh with apt"
+	{{ template "run-as-root" dict "chezmoi" .chezmoi "command" "apt install -y zsh" }}
+{{ else if eq .chezmoi.osRelease.id "arch" -}}
+	{{ template "run-as-root" dict "chezmoi" .chezmoi "command" "apt install -y $PACKAGES $ARCH_PACKAGES" }}
+	echo "Arch: updating packages";
+	{{ template "run-as-root" dict "chezmoi" .chezmoi "command" "pacman -Syy --noconfirm" }}
+	if [ "$(pacman -Qq zsh 2> /dev/null)" != zsh ]; then
+	  echo "installing zsh with pacman"
+	{{ template "run-as-root" dict "chezmoi" .chezmoi "command" "sudo pacman -S --noconfirm $PACKAGES" }}
+	fi
+{{   end -}}
+
+echo -e "\0033[0;32m>>>>> Finish Setting Up Base Packages For Linux <<<<<\033[0m"

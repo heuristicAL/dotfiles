@@ -1,5 +1,4 @@
-{{ if (or (eq .chezmoi.os "linux") (eq .chezmoi.os "darwin")) -}}
-#!/bin/bash
+#!/bin/zsh
 set -eufo pipefail
 
 echo -e "\0033[0;32m>>>>> Begin Setting Up Krew For Linux/Mac <<<<<\033[0m"
@@ -22,5 +21,3 @@ kubectl krew install ns
 cd {{ .chezmoi.sourceDir }}
 
 echo -e "\0033[0;32m>>>>> Finish Setting Up Krew Shell <<<<<\033[0m"
-
-{{ end -}}

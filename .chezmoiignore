@@ -2,3 +2,20 @@ LICENSE
 README.MD
 
 docs/
+
+{{ if ne .chezmoi.os "darwin" }}
+.chezmoiscripts/darwin/**
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+.chezmoiscripts/linux/**
+{{ end }}
+
+{{ if ne .chezmoi.os "windows" }}
+.chezmoiscripts/windows/**
+{{ end }}
+
+{{ if eq .has_chsh_access true }}
+.bash_profile
+{{ end }}
+
