@@ -1,12 +1,17 @@
+{{ if .has_work_profile -}}
+# Work Profile Config, matches only the space-separated list of TLDs
+Host {{ .work_hosts_string }}
+	ServerAliveInterval 60
+	StrictHostKeyChecking no
+	AddKeysToAgent yes
+	UseKeychain yes
+	IdentityFile ~/.ssh/ssh_work
+{{- end }}
+
+
+# Personal Accounts config, matches anything not matched by the "Work" profile.
 Host *
-  ServerAliveInterval 60
-  StrictHostKeyChecking no
-  AddKeysToAgent yes
-  UseKeychain yes
-
-Host github.com bitbucket.org
-  UpdateHostKeys yes
-
-Include ~/.ssh/config.local
-
-# Example: https://github.com/halostatue/dotfiles/blob/main/home/private_dot_ssh/private_config.tmpl
+	User git
+	AddKeysToAgent yes
+	UseKeychain yes
+	IdentityFile ~/.ssh/ssh_personal
