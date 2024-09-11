@@ -11,8 +11,8 @@
 {{ if $hasWorkProfile}}
 {{- $workEmail := promptStringOnce . "workEmail" "Work Email address" -}}
 {{- $workProjectFolder := promptStringOnce . "workProjectFolder" "Work Projects Folder (relative to home) (`cw` will cd you there)" }}
-{{- $workHostString := promptStringOnce . "workHostString" "Space-separated list of Domain patterns to use for work. Used to link the right ssh key
-when accessing work projects/machines. (mainly used for git)" -}}
+{{- $workHostString := promptStringOnce . "workHostString" `Space-separated list of Domain patterns to use for work. Used to link the right ssh key
+when accessing work projects/machines. (mainly used for git)` -}}
     work_email = {{ $workEmail | quote }}
     work_project_folder = {{ osClean (printf "%q" (print .chezmoi.homeDir "/" $workProjectFolder)) }}
     work_hosts_string = {{ $workHostString | quote }}
