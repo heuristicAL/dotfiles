@@ -13,7 +13,7 @@ export DOTFILES="$HOME/.dotfiles"
 export TERM_COLORS_PATH="${DOTFILES}/zsh/terminal-colors.zsh"
 
 # your project folder that we can `c [tab]` to
-export PROJECTS={{ .project_folder | quote }}
+export PROJECTS={{ .personal_project_folder | quote }}
 {{ if .has_alternate_profile -}}
 export PROJECTS_ALTERNATE={{ .alternate_project_folder | quote }}
 {{- end }}

@@ -1,5 +1,5 @@
 [user]
-	email = {{ .email | quote }}
+	email = {{ .personal_email | quote }}
 	name = {{ .full_name | quote }}
 {{ if .has_alternate_profile -}}
 [includeIf "gitdir:{{ .alternate_project_folder }}"]

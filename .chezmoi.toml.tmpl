@@ -1,12 +1,12 @@
 {{- $full_name := promptStringOnce . "full_name" "Full Name" -}}
-{{- $email := promptStringOnce . "email" "Main Email address (Whos home directory is this?)" -}}
-{{- $projectFolder := promptStringOnce . "projectFolder" "Default Projects Folder (relative to home) (`c` will cd you there)" -}}
+{{- $personalEmail := promptStringOnce . "personalEmail" "Your personal email address" -}}
+{{- $personalProjectFolder := promptStringOnce . "projectFolder" "Default Projects Folder (relative to home) (`c` will cd you there)" -}}
 {{- $hasAlternateProfile := promptBoolOnce . "hasAlternateProfile" "Does this machine have an alternate profile? (Like a work or personal 'profile')" -}}
 
 [data]
     full_name = {{ $full_name | quote }}
-    email = {{ $email | quote }}
-    project_folder = {{ osClean (printf "%q" (print .chezmoi.homeDir "/" $projectFolder)) }}
+    personal_email = {{ $personalEmail | quote }}
+    personal_project_folder = {{ osClean (printf "%q" (print .chezmoi.homeDir "/" $personalProjectFolder)) }}
     has_alternate_profile = {{ $hasAlternateProfile }}
 {{ if $hasAlternateProfile}}
 {{- $alternateEmail := promptStringOnce . "alternateEmail" "Alternate Email address" -}}
