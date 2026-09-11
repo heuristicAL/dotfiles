@@ -1,8 +1,0 @@
-{{ if eq .chezmoi.os "darwin" -}}
-{{- include "./dot_config/yabai/.yabairc" -}}
-
-{{- $validOsForBorders := semverCompare ">= 14.0.0" (output "sw_vers" "--productVersion" | trim) }}
-{{- if $validOsForBorders }}
-#borders active_color=0xfff6f6f7 inactive_color=0xff494d64 width=5.0 &
-{{ end }}
-{{- end }}

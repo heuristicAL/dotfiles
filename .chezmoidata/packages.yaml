@@ -10,16 +10,16 @@ packages:
             - 'nushell'
             # /Shared
             - 'unzip'
-            - 'koekeishiya/formulae/yabai'
-            - 'koekeishiya/formulae/skhd'
         casks:
             - 'alacritty'
             - 'betterdisplay'
             - 'ghostty'
             - 'jordanbaird-ice'
+            - 'jackielii/tap/skhd-zig'
+            - 'vorssaint'
         taps:
-            - 'koekeishiya/formulae' # yabai, skhd
-            - 'felixkratz/formulae' # sketchybar, borders
+            - 'jackielii/tap'  # skhd.zig
+            - 'felixkratz/formulae'  # sketchybar, borders
     linux:
         apt:
             packages:
